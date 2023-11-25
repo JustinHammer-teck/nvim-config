@@ -16,7 +16,7 @@ end
 capabilities = vim.tbl_deep_extend("force", capabilities, {
 	workspace = {
 		didChangeWatchedFiles = {
-			dynamicRegistration = false,
+			dynamicRegistration = true,
 		},
 	},
 })
@@ -24,6 +24,7 @@ capabilities = vim.tbl_deep_extend("force", capabilities, {
 -- C Sharp Lsp Configuration
 lspconfig.roslyn.setup({
 	dotnet_cmd = "dotnet", -- this is the default
+	roslyn_version = "4.8.0-3.23475.7", -- this is the default
 	capabilities = vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(), capabilities),
 	on_attach = on_attach,
 })
@@ -143,4 +144,3 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 		vim.lsp.buf.format({ name = "efm" })
 	end,
 })
-
