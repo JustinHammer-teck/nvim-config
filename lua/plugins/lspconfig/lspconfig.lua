@@ -13,20 +13,31 @@ for type, icon in pairs(diagnostic_signs) do
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
-capabilities = vim.tbl_deep_extend("force", capabilities, {
-	workspace = {
-		didChangeWatchedFiles = {
-			dynamicRegistration = true,
+lspconfig.omnisharp.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	filetypes = { "cs", "vb" },
+	root_dir = util.root_pattern("*.sln", "*.csproj", "omnisharp.json", "function.json"),
+	settings = {
+		FormattingOptions = {
+			EnableEditorConfigSupport = true,
+		},
+		ImplementTypeOptions = {
+			InsertionBehavior = "WithOtherMembersOfTheSameKind",
+			PropertyGenerationBehavior = "PreferAutoProperties",
+		},
+		RenameOptions = {
+			RenameInComments = true,
+			RenameInStrings = true,
+			RenameOverloads = true,
+		},
+		RoslynExtensionsOptions = {
+			EnableAnalyzersSupport = true,
+			EnableDecompilationSupport = true,
+			EnableImportCompletion = true,
+			locationPaths = {},
 		},
 	},
-})
-
--- C Sharp Lsp Configuration
-lspconfig.roslyn.setup({
-	dotnet_cmd = "dotnet", -- this is the default
-	roslyn_version = "4.8.0-3.23475.7", -- this is the default
-	capabilities = vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(), capabilities),
-	on_attach = on_attach,
 })
 
 -- Golang LSP Configuration
@@ -60,9 +71,34 @@ lspconfig.lua_ls.setup({
 })
 
 -- typescript
+
 lspconfig.tsserver.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
+	settings = {
+		javascript = {
+			inlayHints = {
+				includeInlayEnumMemberValueHints = true,
+				includeInlayFunctionLikeReturnTypeHints = true,
+				includeInlayFunctionParameterTypeHints = true,
+				includeInlayParameterNameHints = "all",
+				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+				includeInlayPropertyDeclarationTypeHints = true,
+				includeInlayVariableTypeHints = true,
+			},
+		},
+		typescript = {
+			inlayHints = {
+				includeInlayEnumMemberValueHints = true,
+				includeInlayFunctionLikeReturnTypeHints = true,
+				includeInlayFunctionParameterTypeHints = true,
+				includeInlayParameterNameHints = "all",
+				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+				includeInlayPropertyDeclarationTypeHints = true,
+				includeInlayVariableTypeHints = true,
+			},
+		},
+	},
 	filetypes = {
 		"typescript",
 	},

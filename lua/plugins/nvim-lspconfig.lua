@@ -1,5 +1,3 @@
- 
-
 return {
 	"neovim/nvim-lspconfig",
 	opts = {
@@ -23,6 +21,7 @@ return {
 		"williamboman/mason.nvim",
 		"creativenull/efmls-configs-nvim",
 		"hrsh7th/cmp-nvim-lsp",
-		"jmederosalvarado/roslyn.nvim",
+    "hrsh7th/cmp-vsnip",
+    "hrsh7th/vim-vsnip",
 	},
 }
