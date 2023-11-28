@@ -4,6 +4,7 @@ return {
 	event = "InsertEnter",
 	dependencies = {
 		"L3MON4D3/LuaSnip",
+    "rafamadriz/friendly-snippets",
 		"saadparwaiz1/cmp_luasnip",
 		"hrsh7th/cmp-nvim-lsp",
 		"onsails/lspkind.nvim",

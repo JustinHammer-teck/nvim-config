@@ -34,9 +34,11 @@ return {
 	tag = "0.1.4",
 	lazy = false,
 	dependencies = {
-    "nvim-lua/plenary.nvim",
+		"nvim-lua/plenary.nvim",
+	  "nvim-treesitter/nvim-treesitter",
     "nvim-tree/nvim-web-devicons",
-  },
+ { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }
+	},
 	config = config,
 	keys = {
 		mapkey("<leader>fk", "Telescope keymaps", "n"),
